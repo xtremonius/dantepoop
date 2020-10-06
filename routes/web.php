@@ -22,3 +22,7 @@ Route::get('/hola', function () {
 Route::get('/holacomoestas', function () {
     return view('holacomoestas');
 });
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');

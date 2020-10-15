@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('eventos.index');
 });
 Route::get('/hola', function () {
     return view('hola');
@@ -26,3 +27,10 @@ Route::get('/holacomoestas', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/users', function () {
+    return view('users', [
+        'users' => User::paginate()
+    ]);
+})->name('users');
+
